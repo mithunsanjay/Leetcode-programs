@@ -1,26 +1,25 @@
 #include <stack>
-#include <unordered_map>
 using namespace std;
 
 class Solution {
 public:
     bool isValid(string s) {
         stack<char> st;
-        unordered_map<char, char> bracketMap = {
-            {')', '('},
-            {']', '['},
-            {'}', '{'}
-        };
+
         for (char c : s) {
-            if (bracketMap.count(c)) {
-                if (st.empty() || st.top() != bracketMap[c]) {
+            if (c == '(' || c == '[' || c == '{') {
+                st.push(c);  
+            } else {
+                if (st.empty()) return false;  
+                if ((c == ')' && st.top() != '(') ||
+                    (c == ']' && st.top() != '[') ||
+                    (c == '}' && st.top() != '{')) {
                     return false;
                 }
-                st.pop();
-            } else {
-                st.push(c);
+
+                st.pop();  
             }
         }
-        return st.empty();
+        return st.empty();  
     }
 };
