@@ -22,9 +22,9 @@ class Solution {
         temp.next=head;
 
         k = k % len;
-        k=len-k-1;
+        k=len-k;
         ListNode tail=head;
-        for(int i=0;i<k;i++){
+        for(int i=1;i<k;i++){
             tail=tail.next;
         }
        head=tail.next;
